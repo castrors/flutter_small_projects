@@ -1,0 +1,16 @@
+name: Run tests
+
+on: pull_request
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'beta'
+      - name: install dependencies
+        run: flutter packages get
+      - name: run tests
+        run: flutter test --exclude-tags='no-ci'
